@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head> 
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      text-align: center;
+      padding: 50px;
+      color: #333;
+    }
+
+    h2 {
+      color: #2c3e50;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      background-color: #3498db;
+      color: white;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    img {
+      display: block;
+      margin: 20px auto;
+      transition: opacity 0.5s ease;
+      width: 100px;
+    }
+
+    #status {
+      font-weight: bold;
+      margin-top: 10px;
+      color: #555;
+    }
+
+    #counter {
+      color: #888;
+      font-size: 14px;
+    }
+  </style>
+</head> 
+<body>
+
+<h2>Let's Get Started</h2>
+
+<p>This is a first and basic step towards your coding career.</p>
+<p>Let's grab some coffee and code.</p>
+
+<button onclick="toggleLight(true)">Turn on the light</button>
+<button onclick="toggleLight(false)">Turn off the light</button>
+
+<img id="myImage" src="resources/pic_bulboff.gif" />
+
+<p id="status">The light is currently OFF.</p>
+<p id="counter">Light switched: 0 times</p>
+
+<!-- Add audio elements -->
+<audio id="onSound" src="resources/bulbon.mp3"></audio>
+<audio id="offSound" src="resources/bulboff.mp3"></audio>
+
+<script>
+  let switchCount = 0;
+
+  function toggleLight(isOn) {
+    const image = document.getElementById('myImage');
+    const status = document.getElementById('status');
+    const counter = document.getElementById('counter');
+    const onSound = document.getElementById('onSound');
+    const offSound = document.getElementById('offSound');
+
+    // Fade out
+    image.style.opacity = 0;
+
+    setTimeout(() => {
+      image.src = isOn ? 'resources/pic_bulbon.gif' : 'resources/pic_bulboff.gif';
+      status.textContent = `The light is currently ${isOn ? 'ON' : 'OFF'}.`;
+
+      isOn ? onSound.play() : offSound.play();
+
+      // Increment counter
+      switchCount++;
+      counter.textContent = `Light switched: ${switchCount} times`;
+
+      // Fade in
+      image.style.opacity = 1;
+    }, 300);
+  }
+</script>
+
+</body>
+</html>
